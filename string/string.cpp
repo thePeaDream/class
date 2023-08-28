@@ -10,6 +10,7 @@ void testn()
 	cout.operator<<(i)<<endl; //cout << i << endl;
 	cout.operator<<(d);           //cout << d;
 }
+
 int main()
 {
 	//testn();
