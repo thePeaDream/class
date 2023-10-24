@@ -253,8 +253,18 @@ public:
 			//cur相邻兄弟结点有多余的元素，父亲结点直接借
 			if (curBother->_num > 1)
 			{
-				parent->_kv[lent] = curBother->_kv[0];
-				_deleteElement(curBother, curBother->_kv[0]);
+				//如果相邻兄弟结点 在 cur的左边，就借相邻兄弟结点的最后一个元素
+				//否则借第一个元素
+				if (curBother->_kv[0].first < cur->_kv[0].first)
+				{
+					parent->_kv[lent] = curBother->_kv[curBother->_num - 1];
+					_deleteElement(curBother, curBother->_kv[curBother->_num - 1]);
+				}
+				else
+				{
+					parent->_kv[lent] = curBother->_kv[0];
+					_deleteElement(curBother, curBother->_kv[0]);
+				}
 				return true;
 			}
 			else//cur相邻的兄弟结点没有多余的元素可以给父亲结点
